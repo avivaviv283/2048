@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+
     android:orientation="vertical"
     tools:context=".Game">
 
@@ -22,8 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/customborder"
         android:columnCount="4"
+        android:background="@drawable/customborder"
         android:orientation="horizontal"
         android:rowCount="4">
 
@@ -107,5 +108,18 @@
             style="@style/TileStyle"
             android:text="2" />
     </GridLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="drag"
+        android:id="@+id/up1"
+        android:text="up"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/down"
+        android:onClick="drag"
+        android:text="down"/>
 
 </LinearLayout>
