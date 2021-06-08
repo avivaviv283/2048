@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to 2048!"
+        android:textSize="30dp"
+        android:layout_margin="20dp"
+        android:fontFamily="casual"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        />
+
+    <Button
+        android:id="@+id/toGame"
+        android:drawableLeft="@drawable/play"
+        android:layout_width="wrap_content"
+        android:text="Play"
+        android:layout_height="wrap_content"
+        android:onClick="toGame"
+        android:backgroundTint="#DA034E"/>
+
+
+
+</LinearLayout>

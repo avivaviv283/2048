@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".Game">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:fontFamily="casual"
+        android:text="2048"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/customborder"
+        android:columnCount="4"
+        android:orientation="horizontal"
+        android:rowCount="4">
+
+        <TextView
+            android:id="@+id/t01"
+            style="@style/TileStyle"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/t02"
+            style="@style/TileStyle"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/t03"
+            style="@style/TileStyle"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/t04"
+            style="@style/TileStyle"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/t05"
+            style="@style/TileStyle"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/t06"
+            style="@style/TileStyle"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/t07"
+            style="@style/TileStyle"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/t08"
+            style="@style/TileStyle"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/t09"
+            style="@style/TileStyle"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/t10"
+            style="@style/TileStyle"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/t11"
+            style="@style/TileStyle"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/t12"
+            style="@style/TileStyle"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/t13"
+            style="@style/TileStyle"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/t14"
+            style="@style/TileStyle"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/t15"
+            style="@style/TileStyle"
+            android:text="2" />
+
+        <TextView
+            android:id="@+id/t16"
+            style="@style/TileStyle"
+            android:text="2" />
+    </GridLayout>
+
+</LinearLayout>
