@@ -64,16 +64,18 @@ public class Game extends AppCompatActivity {
     }
 
     public void swipeUp() {
-        int count = 0;
+
         for (int i = 4; i < tileArr.size(); i++) {
             if (isAvailableIndex(i)) {
-                while (tileArr.get(i - 4).getVisibility() == View.INVISIBLE) {
-                    tileArr.get(i).setVisibility(View.INVISIBLE);
-                    tileArr.get(i).setText("0");
-                    count++;
+                int j =i;
+                while (j>=4 &&tileArr.get(j - 4).getVisibility() == View.INVISIBLE) {
+                        tileArr.get(j - 4).setVisibility(View.VISIBLE);
+                        tileArr.get(i).setVisibility(View.INVISIBLE);
+                        tileArr.get(j - 4).setText(tileArr.get(j).getText());
+                        tileArr.get(i).setText("0");
+                        j -= 4;
+
                 }
-                tileArr.get(i - (4 * count)).setVisibility(View.VISIBLE);
-                tileArr.get(i - (4 * count)).setText(tileArr.get(i).getText());
             }
         }
         for (int i = 4; i < tileArr.size(); i++) {
