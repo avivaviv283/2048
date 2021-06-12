@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GestureDetectorCompat;
 
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -12,7 +13,8 @@ import java.util.ArrayList;
 
 public class Game extends AppCompatActivity {
     ArrayList<TextView> tileArr = new ArrayList<TextView>();
-    Button up, down;
+
+    private GestureDetectorCompat gestureDetectorCompat = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +38,10 @@ public class Game extends AppCompatActivity {
         tileArr.add(findViewById(R.id.t16));
         DetectSwipeGestureListener gestureListener = new DetectSwipeGestureListener();
         gestureListener.setActivity(this);
+        gestureDetectorCompat = new GestureDetectorCompat(this, gestureListener);
         disable();
         turn();
 
-        up = findViewById(R.id.up1);
-        down = findViewById(R.id.down);
     }
 
     private void turn() {
@@ -67,13 +68,14 @@ public class Game extends AppCompatActivity {
 
         for (int i = 4; i < tileArr.size(); i++) {
             if (isAvailableIndex(i)) {
-                int j =i;
-                while (j>=4 &&tileArr.get(j - 4).getVisibility() == View.INVISIBLE) {
-                        tileArr.get(j - 4).setVisibility(View.VISIBLE);
-                        tileArr.get(i).setVisibility(View.INVISIBLE);
-                        tileArr.get(j - 4).setText(tileArr.get(j).getText());
-                        tileArr.get(i).setText("0");
-                        j -= 4;
+                int j = i;
+                while (j >= 4 && tileArr.get(j - 4).getVisibility() == View.INVISIBLE) {
+                    tileArr.get(j - 4).setVisibility(View.VISIBLE);
+                    tileArr.get(i).setVisibility(View.INVISIBLE);
+                    tileArr.get(j - 4).setText(tileArr.get(j).getText());
+                    tileArr.get(i).setText("0");
+                    j -= 4;
+                    i -= 4;
 
                 }
             }
@@ -89,15 +91,21 @@ public class Game extends AppCompatActivity {
 
 
     public void swipeDown() {
-        for (int i = 11; i < tileArr.size(); i--) {
+        for (int i = 11; i >= 0; i--) {
             if (isAvailableIndex(i)) {
-                while (tileArr.get(i + 4).getVisibility() == View.INVISIBLE) {
-                    tileArr.get(i + 4).setText(tileArr.get(i).getText());
-                    tileArr.get(i + 4).setVisibility(View.VISIBLE);
+                int j = i;
+                while (j <= 11 && tileArr.get(j + 4).getVisibility() == View.INVISIBLE) {
+                    tileArr.get(j + 4).setVisibility(View.VISIBLE);
+                    tileArr.get(i).setVisibility(View.INVISIBLE);
+                    tileArr.get(j + 4).setText(tileArr.get(j).getText());
+                    tileArr.get(i).setText("0");
+                    j += 4;
+                    i += 4;
+
                 }
             }
         }
-        for (int i = 11; i < tileArr.size(); i--) {
+        for (int i = 11; i >= 0; i--) {
             if (isAvailableIndex(i) && Integer.parseInt(tileArr.get(i).getText().toString()) == Integer.parseInt(tileArr.get(i + 4).getText().toString())) {
                 tileArr.get(i).setVisibility(View.INVISIBLE);
                 tileArr.get(i + 4).setText(Integer.parseInt(tileArr.get(i).getText().toString()) + Integer.parseInt(tileArr.get(i).getText().toString()) + "");
@@ -111,6 +119,34 @@ public class Game extends AppCompatActivity {
     }
 
     public void swipeLeft() {
+
+        for (int i = 1; i < tileArr.size(); i++)
+            if (isAvailableIndex(i) && !checkForLeft(i)) {
+                int j = i;
+                while (j < 15 && tileArr.get(j - 1).getVisibility() == View.INVISIBLE && !checkForLeft(j)) {
+                    tileArr.get(j - 1).setVisibility(View.VISIBLE);
+                    tileArr.get(i).setVisibility(View.INVISIBLE);
+                    tileArr.get(j - 1).setText(tileArr.get(j).getText());
+                    tileArr.get(i).setText("0");
+                    j -= 1;
+                    i -= 1;
+                }
+            }
+        for (int i = 1; i > tileArr.size(); i++) {
+            if (!checkForLeft(i) && isAvailableIndex(i) && Integer.parseInt(tileArr.get(i).getText().toString()) == Integer.parseInt(tileArr.get(i - 1).getText().toString())) {
+                tileArr.get(i).setVisibility(View.INVISIBLE);
+                tileArr.get(i - 1).setText(Integer.parseInt(tileArr.get(i).getText().toString()) + Integer.parseInt(tileArr.get(i - 1).getText().toString()) + "");
+            }
+        }
+        turn();
+
+    }
+
+    private boolean checkForLeft(int index) {
+        if (index % 4 == 0) {
+            return true;
+        }
+        return false;
     }
 
     public boolean isAvailableIndex(int i) {
@@ -121,12 +157,9 @@ public class Game extends AppCompatActivity {
 
     }
 
-    public void drag(View view) {
-        if (view == up) {
-            swipeUp();
-        }
-        if (view == down) {
-            swipeDown();
-        }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        gestureDetectorCompat.onTouchEvent(event);
+        return true;
     }
 }

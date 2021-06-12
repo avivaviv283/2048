@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 
@@ -25,11 +26,13 @@ public class DetectSwipeGestureListener extends GestureDetector.SimpleOnGestureL
         float deltaXAbs = Math.abs(deltaX);
         float deltaYAbs = Math.abs(deltaY);
 
+
+
         if ((deltaXAbs >= MIN_SWIPE_DISTANCE_X) && (deltaXAbs <= MAX_SWIPE_DISTANCE_X)) {
             if (deltaX > 0) {
-                this.activity.swipeRight();
-            } else {
                 this.activity.swipeLeft();
+            } else {
+                this.activity.swipeRight();
             }
         }
         if ((deltaYAbs >= MIN_SWIPE_DISTANCE_Y) && (deltaYAbs <= MAX_SWIPE_DISTANCE_Y)) {
